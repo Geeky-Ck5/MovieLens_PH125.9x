@@ -52,9 +52,6 @@ edx <- rbind(edx, removed)
 
 rm(dl, ratings, movies, test_index, temp, movielens, removed)
 
-
-
-
 # Create train and test sets
 set.seed(1, sample.kind="Rounding")
 test_index <- createDataPartition(y = edx$rating, times = 1, p = 0.1, list = FALSE)
@@ -127,7 +124,7 @@ global_avg_rating <- mean(edx$rating)
 
 # Tuning parameter for Bayesian Average, adjust as needed
 lambda = 10
-
+#results_reco <- 0 had to add this for the knitting to work
 # Apply Bayesian Average to predictions
 bayesian_predictions <- mapply(bayesian_average, results_reco, MoreArgs = list(mu = global_avg_rating, lambda = lambda), SIMPLIFY = FALSE)
 bayesian_predictions <- unlist(lapply(bayesian_predictions, function(x) x$mean))
