@@ -290,6 +290,7 @@ print(rmse_table)
 
 
 ####### PRedicting with final_holdout_test
+source("Capstone_Project.R") # need that for Knit as the final_holdout_test was created in that script
 final_holdout_test_reco <- with(final_holdout_test, data_memory(user_index = userId, item_index = movieId, rating = rating))
 
 final_holdout_predictions <- final_recommender_model$predict(final_holdout_test_reco, out_memory())

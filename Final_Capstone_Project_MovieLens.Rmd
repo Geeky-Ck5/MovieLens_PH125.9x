@@ -188,7 +188,7 @@ global_avg_rating <- mean(edx$rating)
 
 # Tuning parameter for Bayesian Average, adjust as needed
 lambda = 10
-
+results_reco <- 0
 # Apply Bayesian Average to predictions
 bayesian_predictions <- mapply(bayesian_average, results_reco, MoreArgs = list(mu = global_avg_rating, lambda = lambda), SIMPLIFY = FALSE)
 bayesian_predictions <- unlist(lapply(bayesian_predictions, function(x) x$mean))
@@ -318,6 +318,7 @@ Based on the table, the Matrix Factorization with Recosystem is better and will 
 
 ####### Predicting with final_holdout_test
 ```{r echo=TRUE}
+source("Capstone_Project.R")
 final_holdout_test_reco <- with(final_holdout_test, data_memory(user_index = userId, item_index = movieId, rating = rating))
 
 final_holdout_predictions <- final_recommender_model$predict(final_holdout_test_reco, out_memory())
